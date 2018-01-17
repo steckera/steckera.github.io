@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="static/styles.css">
+	<title>Inventory</title>
+</head>
+
+<body>
+
+	<header>
+		<h1>Inventory Check</h1>
+		<button id="btn">Show Books</button>
+	</header>
+	
+	<br>
+	
+	<div class="container" style="overflow-x:auto;">
+	<table id="tbl">
+		<thead>
+			<tr id="Head">
+			</tr>
+		</thead>
+	</table>
+	<div>
+	
+	<br>
+	
+	<div class="container">
+		<button id="add">Add Books to List</button>
+		<br>
+		<div>
+			<form id="addForm" style="display:none;" class="bookAdd" method="post" role="form">
+				ISBN:<br> 
+				<input type="text" name="isbn"><br>
+				Title:<br> 
+				<input type="text" name="title" required><br>
+				Author:<br> 
+				<input type="text" name="author" required><br>
+				Publishing Date:<br> 
+				<input type="text" name="pubDate"><br>
+				Genre:<br> 
+				<input type="text" name="genre">
+				<br>
+				<button id="submit">Submit</button>
+			</form>
+		</div>
+	</div>
+	
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+// setup some JSON to use
+
+window.addEventListener('load', function() {
+	// setup the button click
+	/*document.getElementById("btn").onclick = function() {
+		doWork()*/
+		document.getElementById("btn").addEventListener("click", function(){ showList(); });
+		document.getElementById("submit").addEventListener("click", function(){ subNew(); });
+});
+
+function showList() {
+	//alert("Started doWork");
+	//build and populate table using json from py script
+	var table = document.getElementById('tbl');
+	//Getting information from python to javascript here
+	var data = {{data|safe}};
+	
+	//Creating rows for the data and populating them
+	for (i = 0; i < data.length-1; i++){
+		var row = table.insertRow(i);
+		for (var ii = 0; ii < data[i].length; ii++){
+			var cell = row.insertCell(ii);
+			cell.innerHTML = data[i][ii]
+			
+		}
+	}
+	
+	/*for (i = 0; i < data.length; i++){
+		var row = table.insertRow(i);
+		for (var ii = 0; ii < data[i].length; ii++){
+			if (ii = data[0][ii]){
+				var th = document.createElement('th');
+				th.innerHTML = data[0][ii];
+			}
+			else{
+				var cell = row.insertCell(ii);
+				cell.innerHTML = data[i][ii];
+			}
+		}
+	}*/
+	// stop link reloading the page
+	event.preventDefault();
+}
+
+window.addEventListener('load', function() {
+	document.getElementById("add").addEventListener("click", function(){ addList(); });
+});
+
+function addList(){
+	document.getElementById('addForm').style.display="block";
+};
+//DO NO REMOVE THIS SECTION! THIS ACTUALLY PRINTS THE JSON TO THE CONSOLE!!!
+function subNew(){
+	//Retrieve form information
+	const formToJSON = elements => [].reduce.call(elements, (data, element) => {
+		data[element.name] = element.value;
+		return data;
+	}, {});
+
+	//Stop the form from submitting since we are using AJAX instead
+	const handleFormSubmit = event => {
+		event.preventDefault();
+	};
+
+	const form = document.getElementById('addForm');//[0];
+	
+	//Call our function to get the form data
+	const data1 = formToJSON(form.elements);
+	const data = JSON.stringify(data1);
+	
+	//print form data in console as formatted JSON
+	console.log(data);
+	
+	//ajax the JSON to the server
+	$.ajax({
+		url:"receiver",
+		type:"POST",
+		data: JSON.stringify(data1),
+		contentType: 'application/json; charset=utf-8',
+		dataType: 'json',
+		async: true,
+		success: function(msg) {
+			alert(msg);
+		}
+	});
+		
+	//timeout:3600 *5
+	//Stop from reloading the page
+	event.preventDefault();
+};
+
+/*form.addEventListener('submit', function(){
+	handleFormSubmit;
+	sendstuff();
+});
+function sendStuff(){
+	//xhttp.open("POST", "/receiver", true);
+	//xhttp.send(data)
+	$.post("/", data, function(){
+	});
+	document.getElementById('addForm').reset();
+	event.preventDefault();
+}*/
+/*
+$(document).ready(window, function() {
+//$("#submitForm").click(function(e){
+$(submit).click(function(e){
+
+    // Prevent the HTML page from submitting the form since we're doing this by AJAX. This would cause duplications and other issues.
+    e.preventDefault();
+
+    // Get a FormData object from the page
+    var data = new FormData($('form'));//[0]);
+
+    // You don't HAVE to send your data by JSON, and in this instance it will be easier not to
+    $.ajax({
+        type: 'POST',
+        url: '/',
+        data: data,
+        //processData: false,
+        //contentType: false,
+        success: function(result) {
+            console.log(result)
+        }
+    })
+    })
+})*/
+/*
+function subNew(){
+	
+    //var data = new FormData($('form'));//[0]);
+	event.preventDefault();
+    // You don't HAVE to send your data by JSON, and in this instance it will be easier not to
+    $.ajax({
+        type: 'POST',
+        url: '/',
+        data: data,
+        //processData: false,
+        //contentType: false,
+        success: function(result) {
+            console.log(result)
+        }
+    })
+callAjaxfunc(function(){
+	console.log('Pass2');
+});
+
+function callAjaxfunc(callback){
+	$(document).ready(function() {
+	$('#submit').click(function(){		
+		// Get a FormData object from the page
+		/*var form = $('#addForm')[0];
+		var isbn = form.elements["isbn"].value;
+		var title = form.elements["title"].value;
+		var author = form.elements["author"].value;
+		var pubDate = form.elements["pubDate"].value;
+		var genre = form.elements["genre"].value; 
+		var formData = new FormData(form);
+		formData.append(isbn, title, author, pubDate, genre);
+		var data = (isbn, title, author, pubDate, genre);*/
+		/*$.post("/postmethod", {
+			javasript_data: data,
+			async: false
+		});*/
+		/*$.ajax({
+			type: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify(formdata),
+			dataType: 'json',
+			url: '127.0.0.1:5000/form',
+			async: false,
+			success: function (e) {
+				console.log(e);
+				window.location = '127.0.0.1:5000/index';
+			},
+			error: function(error){
+			console.log(error);
+			},
+			onAjaxSuccess: function(){
+				callback();
+			}
+		});
+	});
+	});
+};
+//console.log(data,'Pass1')
+};*/
+</script>
+</body>
+</html>
