@@ -1,0 +1,129 @@
+
+body{
+		background-color: rgb(242, 245, 244)
+}
+
+.navbar{ 
+		-moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+		display: -webkit-inline-flex;
+}
+
+.icon {
+	width:80px;
+}
+
+#navigationBar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; 
+		flex-grow: 1;
+}
+
+li {
+		margin: 2px;
+    float: left;
+		background-color: blue;
+		-moz-border-radius: 10px;
+  	-webkit-border-radius: 10px;
+  	border-radius: 10px;
+		border: none;
+		text-align: center;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color:white;
+    padding: 14px 16px;
+    text-decoration: none;
+		background-color: blue;
+		-moz-border-radius: 10px;
+  	-webkit-border-radius: 10px;
+  	border-radius: 10px;
+		border: none;
+		text-align: center;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+		background-color: blue;
+		-moz-border-radius: 10px;
+  	-webkit-border-radius: 10px;
+  	border-radius: 10px;
+		border: none;
+		text-align: center;
+		color: rgb(157, 239, 241);
+}
+
+li.dropdown {
+    display: inline-block;
+		text-align: center;
+		margin: 2px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    /*min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);*/
+    z-index: 1;
+		background-color: blue;
+		-moz-border-radius: 30px;
+  	-webkit-border-radius: 30px;
+  	border-radius: 30px;
+		border: none;
+		text-align: center;
+		margin: 2px;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.dropdown-content a:hover {
+	background-color:blue;
+	color: rgb(157, 239, 241);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.required{
+	color:red;
+}
+
+.submit{
+	-moz-border-radius: 30px;
+  -webkit-border-radius: 30px;
+  border-radius: 30px;
+	color: white;
+	background-color: blue;
+  border: none;
+}
+
+.plain a:hover, a:visited, a:link, a:active{
+	color: black;
+	font-weight: bold;
+	border: none;
+	border-bottom:0;
+	text-decoration: none !important;
+	-webkit-box-shadow: none !important;
+  box-shadow: none !important;
+
+}
+
+.postList{
+	color: black;
+	font-weight: bold;
+	border: none;
+	border-bottom:0;
+	text-decoration: none !important;
+	-webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
