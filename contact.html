@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Blog</title>
+		<link href="index.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+
+		<!--Setup the navigation bar-->
+		<div class="navbar" data-role="navbar">
+			<div class="icon"><a href="index.html"><img src="backup.png" alt="home icon"></a></div>
+			<ul id="navigationBar">
+				<li class="dropdown">
+					<a href="javascript:void(0)" class="dropbtn">Writings</a>
+					<div class="dropdown-content">
+						<a href="#">Educational</a>
+						<a href="#">Opinion Pieces</a>
+					</div>
+				</li>
+				<li><a href="about.html">About Us</a></li>
+				<li><a href="contact.html">Contact Us</a></li>
+			</ul>
+		</div>
+
+		<p> Thanks for visiting our blog!</p>
+		<p>Please fill out the form below if you have questions for us or want to send a general message.<br><br> To learn more about who we are and what we do, please visit the <a class="plain" href="about.html" >about us</a> section.</p>
+
+		<!--Contact Form-->
+		<div class="container">
+			<h2>About You</h2>
+  		<form action="action_page.php">
+
+				<label for="name">Your Name</label>
+				<span class="required">*</span><br>
+				<input type="text" id="fname" name="firstname" placeholder="eg. Jane Doe"><br>
+
+				<label for="email">Email Address</label>
+				<span class="required">*</span><br>
+				<input type="text" id="emailaddy" name="email" placeholder="eg. janedoe@somemail.com">
+
+				<h3>Write!<span class="required">*</span></h3>
+				<textarea id="subject" name="subject" style="height:200px"></textarea><br>
+
+				<input type="submit" value="Submit" class="submit">
+
+  		</form>
+		</div>
+  </body>
+</html>
