@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>repl.it</title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Blog</title>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.6.2/brython.min.js"></script>		
+  </head>
+
+  <body onload="brython()">
+		<!--Setup the navigation bar-->
+		<div class="navbar" data-role="navbar">
+			<div class="icon"><a href="index.html"><img src="backup.png" alt="home icon"></a></div>
+			<ul id="navigationBar">
+				<li class="dropdown">
+					<a href="javascript:void(0)" class="dropbtn">Writings</a>
+					<div class="dropdown-content">
+						<a href="educational.html">Educational</a>
+						<a href="#">Opinion Pieces</a>
+					</div>
+				</li>
+				<li><a href="about.html">About Us</a></li>
+				<li><a href="contact.html">Contact Us</a></li>
+			</ul>
+		</div>
+
+	<header>
+		<h1>Most Recent Posts</h1>
+	</header>
+	
+	<br>
+	
+	<div class="container" style="overflow-x:auto;">
+	<table id="tbl">
+		<thead>
+			<tr id="Head">
+			</tr>
+		</thead>
+	</table>
+	<div>
+	
+	<br>
+
+	<header>
+		<h1>Top Posts</h1>
+	</header>
+
+	<br>
+
+<script type="text/python">
+	import os
+
+  def fileNames():
+	  # detect the current working directory
+    path = "/Educational/"
+
+    # read the entries
+    with os.scandir(path) as listOfEntries:  
+      for entry in listOfEntries:
+          # print all entries that are files
+				  console.log(entry.name)
+          if entry.is_file():
+            console.log(entry.name)
+</script>
+
+<!--
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+// setup some JSON to use
+
+window.addEventListener('load', function() {
+	// setup the button click
+	/*document.getElementById("btn").onclick = function() {
+		doWork()*/
+		document.addEventListener("load", function(){ showList(); });
+		
+});
+
+function showList() {
+	//alert("Started doWork");
+	//build and populate table using json from py script
+	var table = document.getElementById('tbl');
+	//Getting information from python to javascript here
+	var data = {{data|safe}};
+	
+	//Creating rows for the data and populating them
+	for (i = 0; i < data.length-1; i++){
+		var row = table.insertRow(i);
+		for (var ii = 0; ii < data[i].length; ii++){
+			var cell = row.insertCell(ii);
+			cell.innerHTML = data[i][ii]
+			
+		}
+	}
+
+	// stop link reloading the page
+	event.preventDefault();
+}
+
+window.addEventListener('load', function() {
+	document.getElementById("add").addEventListener("click", function(){ addList(); });
+});
+
+function addList(){
+	document.getElementById('addForm').style.display="block";
+};
+//DO NO REMOVE THIS SECTION! THIS ACTUALLY PRINTS THE JSON TO THE CONSOLE!!!
+function subNew(){
+	//Retrieve form information
+	const formToJSON = elements => [].reduce.call(elements, (data, element) => {
+		data[element.name] = element.value;
+		return data;
+	}, {});
+
+	//Stop the form from submitting since we are using AJAX instead
+	const handleFormSubmit = event => {
+		event.preventDefault();
+	};
+
+	const form = document.getElementById('addForm');//[0];
+	
+	//Call our function to get the form data
+	const data1 = formToJSON(form.elements);
+	const data = JSON.stringify(data1);
+	
+	//print form data in console as formatted JSON
+	console.log(data);
+	
+	//ajax the JSON to the server
+	$.ajax({
+		url:"receiver",
+		type:"POST",
+		data: JSON.stringify(data1),
+		contentType: 'application/json; charset=utf-8',
+		dataType: 'json',
+		async: true,
+		success: function(msg) {
+			alert(msg);
+		}
+	});
+		
+	//timeout:3600 *5
+	//Stop from reloading the page
+	event.preventDefault();
+};
+
+  </script>	-->
+</body>
+</html>
